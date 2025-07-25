@@ -76,7 +76,7 @@
 
       resultDiv.textContent = "Analyzing...";
       try {
-        const res = await fetch(`${https://backend-2-2-01gr.onrender.com/}/detect/image`, {
+        const res = await fetch(`${BACKEND_URL}/detect/image`, {
           method: "POST",
           body: formData,
         });
@@ -102,7 +102,7 @@
 
       resultDiv.textContent = "Analyzing...";
       try {
-        const res = await fetch(`${https://backend-2-2-01gr.onrender.com/}/detect/video`, {
+        const res = await fetch(`${BACKEND_URL}/detect/video`, {
           method: "POST",
           body: formData,
         });
