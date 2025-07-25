@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI MIRROR – Deepfake vs Reality</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #444;
+    }
+    section {
+      margin: 2rem auto;
+      max-width: 600px;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="file"] {
+      margin: 1rem 0;
+    }
+    button {
+      padding: 0.5rem 1.2rem;
+      background-color: #0080ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 AI MIRROR</h1>
+
+  <section>
+    <h2>🔍 Deepfake Image Detection</h2>
+    <input type="file" id="imageInput" accept="image/*" />
+    <br/>
+    <button onclick="uploadImage()">Analyze Image</button>
+    <div class="result" id="imageResult"></div>
+  </section>
+
+  <section>
+    <h2>🎬 Emotional Consistency in Video</h2>
+    <input type="file" id="videoInput" accept="video/*" />
+    <br/>
+    <button onclick="uploadVideo()">Analyze Video</button>
+    <div class="result" id="videoResult"></div>
+  </section>
+
+  <script>
+    const BACKEND_URL = "https://your-backend-url.onrender.com"; // 🟡 Replace this with your actual backend URL
+
+    async function uploadImage() {
+      const fileInput = document.getElementById("imageInput");
+      const resultDiv = document.getElementById("imageResult");
+
+      if (!fileInput.files.length) {
+        resultDiv.textContent = "Please upload an image.";
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", fileInput.files[0]);
+
+      resultDiv.textContent = "Analyzing...";
+      try {
+        const res = await fetch(`${https://backend-2-2-01gr.onrender.com/}/detect/image`, {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        resultDiv.textContent = JSON.stringify(data);
+      } catch (err) {
+        resultDiv.textContent = "Error analyzing image.";
+        console.error(err);
+      }
+    }
+
+    async function uploadVideo() {
+      const fileInput = document.getElementById("videoInput");
+      const resultDiv = document.getElementById("videoResult");
+
+      if (!fileInput.files.length) {
+        resultDiv.textContent = "Please upload a video.";
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("video", fileInput.files[0]);
+
+      resultDiv.textContent = "Analyzing...";
+      try {
+        const res = await fetch(`${https://backend-2-2-01gr.onrender.com/}/detect/video`, {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        resultDiv.textContent = JSON.stringify(data);
+      } catch (err) {
+        resultDiv.textContent = "Error analyzing video.";
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>
+
